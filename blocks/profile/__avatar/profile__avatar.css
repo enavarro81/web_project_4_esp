@@ -1,0 +1,10 @@
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  background-image: url(../../../images/profile/jacques_cousteau.jpg);
+  background-size: contain;
+  background-color: #c4c4c4;
+  border-radius: 50%;
+}
