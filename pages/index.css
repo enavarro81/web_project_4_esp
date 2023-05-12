@@ -19,6 +19,18 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_valle-yosemite.css);
+@import url(../blocks/element/__descripcion/element__descripcion.css);
+@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__trash/element__trash.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_niagara-falls.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_montanas-calvas.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_monte-rushmore.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_gran-canon.css);
+@import url(../blocks/element/__image/_theme/element__image_theme_yellowstone.css);
 body {
   color: #fff;
   font-family: "Inter", serif;
@@ -31,4 +43,9 @@ p {
 a {
   text-decoration: none;
   color: #000000;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
 }
