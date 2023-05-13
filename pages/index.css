@@ -31,6 +31,8 @@
 @import url(../blocks/element/__image/_theme/element__image_theme_monte-rushmore.css);
 @import url(../blocks/element/__image/_theme/element__image_theme_gran-canon.css);
 @import url(../blocks/element/__image/_theme/element__image_theme_yellowstone.css);
+
+@import url(../blocks/footer/footer.css);
 body {
   color: #fff;
   font-family: "Inter", serif;
