@@ -8,6 +8,20 @@
     <title>Alrededor de los Estados Unidos</title>
   </head>
   <body>
+    <div class="popup">
+      <div class="popup__container">
+        <div class="popup__button-close">+</div>
+        <form class="popup__form">
+          <p class="popup__title">Editar perfil</p>
+          <input class="popup__input popup__input_name" placeholder="Nombre" />
+          <input
+            class="popup__input popup__input_about-us"
+            placeholder="Acerca de mi"
+          />
+          <button type="submit" class="popup__button-save">Guardar</button>
+        </form>
+      </div>
+    </div>
     <div class="page">
       <header class="header">
         <div class="header__logo"></div>
@@ -20,7 +34,7 @@
             <div class="profile__info">
               <div class="profile__title">
                 <h1 class="profile__name">Jacques Cousteau</h1>
-                <div class="profile__edit-button"></div>
+                <button class="profile__button-edit"></button>
               </div>
               <p class="profile__subtitle">Explorador</p>
             </div>
@@ -35,7 +49,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Valle de Yosemite</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
           <li class="element">
@@ -45,7 +59,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Cataratas del Niagara</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
           <li class="element">
@@ -55,7 +69,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Montañas Calvas</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
           <li class="element">
@@ -65,7 +79,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Monte Rushmore</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
           <li class="element">
@@ -73,7 +87,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Gran Cañón</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
           <li class="element">
@@ -81,7 +95,7 @@
             <div class="element__trash"></div>
             <div class="element__descripcion">
               <p class="element__title">Yellowstone</p>
-              <div class="element__like"></div>
+              <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
         </ul>
@@ -90,5 +104,6 @@
         <p>&#169; 2023 Alrededor de los EEUU</p>
       </footer>
     </div>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
