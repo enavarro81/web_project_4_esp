@@ -2,15 +2,24 @@
 
 ### Descripción general
 
-* Figma
-* Imágenes
+- Introducción
+- Tecnologias
+- Enlace a GitHub
 
-**Figma**
+**Introducción**
 
-* [Enlace al proyecto en Figma](https://www.figma.com/file/LDMgqWesKpQkIwhOfEBuTS/WEB%2C-Sprint-5%3A-Around-The-U.S.-%7C-desktop-%2B-mobile?node-id=0%3A1)
+Este proyecto es la culminación del sprint #5 pertenciente al bootcamp de _Desarrollador Web_ de **Practicum**, en el cual ponemos en práctica e implementamos todo lo que hemos aprendido a los largo de las últimas 2 semanas. El proyecto consiste en mostrar algunos de los lugares turísticos de Estados Unidos de forma responsiva, incorporando **javascript** para a la sección de profiles
 
-**Imágenes**
+**Tecnologias**
 
-A la hora de trabajar, debes optar por exportar las imágenes directamente desde Figma; te recomendamos hacerlo para practicar más. No olvides optimizarlas [aquí](https://tinypng.com/), para que tu proyecto cargue más rápido. 
+- HTML
+- Animaciones en CSS
+- Media Queries
+- Rutas y organización de Archivos con BEM
+- Git
+- Figma
+- Javascript
 
-¡Esperamos que te diviertas con JavaScript!
+**Enlace a GitHub**
+
+- [Enlace al proyecto en GitHub](https://enavarro81.github.io/web_project_4_esp/)
