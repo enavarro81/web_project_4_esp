@@ -42,6 +42,7 @@
           <div class="profile__add-button"></div>
         </section>
         <ul class="elements">
+          <!--
           <li class="element">
             <div
               class="element__image element__image_theme_valle-yosemite"
@@ -98,12 +99,23 @@
               <div class="element__like element__like_theme_inactive"></div>
             </div>
           </li>
+          -->
         </ul>
       </main>
       <footer class="footer">
         <p>&#169; 2023 Alrededor de los EEUU</p>
       </footer>
     </div>
+    <template id="element-template">
+      <li class="element">
+        <div class="element__image"></div>
+        <div class="element__trash"></div>
+        <div class="element__descripcion">
+          <p class="element__title"></p>
+          <div class="element__like element__like_theme_inactive"></div>
+        </div>
+      </li>
+    </template>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
