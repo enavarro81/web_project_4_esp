@@ -13,13 +13,15 @@
         <div class="popup__button-close">+</div>
         <form class="popup__form">
           <p class="popup__title">Editar perfil</p>
-          <input class="popup__input popup__input_1" placeholder="Nombre" />
-          <input
-            class="popup__input popup__input_2"
-            placeholder="Acerca de mi"
-          />
+          <input class="popup__input popup__input_1" required />
+          <input class="popup__input popup__input_2" required />
           <button type="submit" class="popup__button-save">Guardar</button>
         </form>
+      </div>
+      <div class="popup__image">
+        <div class="popup__button-close popup__button-close_theme_image">+</div>
+        <img class="popup__image-frame" src="" />
+        <p class="popup__image-caption"></p>
       </div>
     </div>
     <div class="page">
@@ -41,66 +43,7 @@
           </div>
           <div class="profile__button-add"></div>
         </section>
-        <ul class="elements">
-          <!--
-          <li class="element">
-            <div
-              class="element__image element__image_theme_valle-yosemite"
-            ></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Valle de Yosemite</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          <li class="element">
-            <div
-              class="element__image element__image_theme_niagara-falls"
-            ></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Cataratas del Niagara</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          <li class="element">
-            <div
-              class="element__image element__image_theme_montanas-calvas"
-            ></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Montañas Calvas</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          <li class="element">
-            <div
-              class="element__image element__image_theme_monte-rushmore"
-            ></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Monte Rushmore</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          <li class="element">
-            <div class="element__image element__image_theme_gran-canon"></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Gran Cañón</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          <li class="element">
-            <div class="element__image element__image_theme_yellowstone"></div>
-            <div class="element__trash"></div>
-            <div class="element__descripcion">
-              <p class="element__title">Yellowstone</p>
-              <div class="element__like element__like_theme_inactive"></div>
-            </div>
-          </li>
-          -->
-        </ul>
+        <ul class="elements"></ul>
       </main>
       <footer class="footer">
         <p>&#169; 2023 Alrededor de los EEUU</p>

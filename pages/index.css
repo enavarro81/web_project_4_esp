@@ -38,15 +38,20 @@
 @import url(../blocks/footer/footer.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/_theme/popup_theme_opened.css);
+@import url(../blocks/popup/_theme/popup_theme_closed.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
+@import url(../blocks/popup/__button-close/_theme/popup__button-close_theme_image.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__input_1/popup__input_1.css);
 @import url(../blocks/popup/__input_2/popup__input_2.css);
 @import url(../blocks/popup/__button-save/popup__button-save.css);
+@import url(../blocks/popup/__image-frame/popup__image-frame.css);
+@import url(../blocks/popup/__image-caption/popup__image-caption.css);
 
 body {
   background-color: #000;
