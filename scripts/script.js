@@ -16,6 +16,8 @@ const popUpTittle = document.querySelector(".popup__title");
 const popUpInput1 = document.querySelector(".popup__input_1");
 const popUpInput2 = document.querySelector(".popup__input_2");
 const popUpButtonSave = document.querySelector(".popup__button-save");
+const popUpErrorInput1 = document.querySelector(".input_1-error");
+const popUpErrorInput2 = document.querySelector(".input_2-error");
 
 const initialCards = [
   {
@@ -99,10 +101,19 @@ function setearOpenPopUp() {
 profileButtonEdit.addEventListener("click", function () {
   setearOpenPopUp();
   popUpTittle.textContent = "Editar perfil";
-  popUpInput1.value = profileName.textContent;
+  //popUpInput1.value = profileName.textContent;
+  popUpInput1.value = "";
   popUpInput1.setAttribute("placeholder", "Nombre");
-  popUpInput2.value = profileSubtitle.textContent;
+  popUpInput1.setAttribute("minlength", "2");
+  popUpInput1.setAttribute("maxlength", "40");
+  //console.log(popUpInput1);
+  //popUpInput2.value = profileSubtitle.textContent;
+  popUpInput2.value = "";
   popUpInput2.setAttribute("placeholder", "Acerca de mi");
+  popUpInput2.setAttribute("minlength", "2");
+  popUpInput2.setAttribute("maxlength", "200");
+  popUpInput2.removeAttribute("type");
+  //console.log(popUpInput2);
 });
 
 profileButtonAdd.addEventListener("click", function () {
@@ -110,13 +121,25 @@ profileButtonAdd.addEventListener("click", function () {
   popUpTittle.textContent = "Nuevo lugar";
   popUpInput1.value = "";
   popUpInput1.setAttribute("placeholder", "Título");
+  popUpInput1.setAttribute("minlength", "2");
+  popUpInput1.setAttribute("maxlength", "30");
+  //console.log(popUpInput1);
   popUpInput2.value = "";
   popUpInput2.setAttribute("placeholder", "Enlace a la imagen");
+  popUpInput2.removeAttribute("minlength");
+  popUpInput2.removeAttribute("maxlength");
+  popUpInput2.setAttribute("type", "url");
+  //console.log(popUpInput2);
 });
 
 function setearClosePopUp() {
   popUp.classList.toggle("popup_theme_opened");
   popUp.classList.add("popup_theme_closed");
+
+  popUpInput1.classList.remove("popup__input_type_error");
+  popUpErrorInput1.classList.remove("popup__error_visible");
+  popUpInput2.classList.remove("popup__input_type_error");
+  popUpErrorInput2.classList.remove("popup__error_visible");
 }
 
 popUpButtonClose.addEventListener("click", function () {
@@ -141,6 +164,7 @@ function handleProfileFormSubmit(evt) {
   popUpInput2.value = "";
   popUp.classList.toggle("popup_theme_opened");
   popUp.classList.add("popup_theme_closed");
+  popUpButtonSave.classList.add("popup__button_disabled");
 }
 
 popUpForm.addEventListener("submit", handleProfileFormSubmit);
