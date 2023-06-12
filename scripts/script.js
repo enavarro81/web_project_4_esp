@@ -101,19 +101,15 @@ function setearOpenPopUp() {
 profileButtonEdit.addEventListener("click", function () {
   setearOpenPopUp();
   popUpTittle.textContent = "Editar perfil";
-  //popUpInput1.value = profileName.textContent;
   popUpInput1.value = "";
   popUpInput1.setAttribute("placeholder", "Nombre");
   popUpInput1.setAttribute("minlength", "2");
   popUpInput1.setAttribute("maxlength", "40");
-  //console.log(popUpInput1);
-  //popUpInput2.value = profileSubtitle.textContent;
   popUpInput2.value = "";
   popUpInput2.setAttribute("placeholder", "Acerca de mi");
   popUpInput2.setAttribute("minlength", "2");
   popUpInput2.setAttribute("maxlength", "200");
   popUpInput2.removeAttribute("type");
-  //console.log(popUpInput2);
 });
 
 profileButtonAdd.addEventListener("click", function () {
@@ -123,13 +119,11 @@ profileButtonAdd.addEventListener("click", function () {
   popUpInput1.setAttribute("placeholder", "Título");
   popUpInput1.setAttribute("minlength", "2");
   popUpInput1.setAttribute("maxlength", "30");
-  //console.log(popUpInput1);
   popUpInput2.value = "";
   popUpInput2.setAttribute("placeholder", "Enlace a la imagen");
   popUpInput2.removeAttribute("minlength");
   popUpInput2.removeAttribute("maxlength");
   popUpInput2.setAttribute("type", "url");
-  //console.log(popUpInput2);
 });
 
 function setearClosePopUp() {
@@ -170,12 +164,18 @@ function handleProfileFormSubmit(evt) {
 popUpForm.addEventListener("submit", handleProfileFormSubmit);
 
 document.addEventListener("click", function (evt) {
-  //console.log(evt.target.className);
   const elementClicked = evt.target.className;
   if (
     elementClicked === "popup__container" ||
-    elementClicked === "popup popup_theme_opened"
+    elementClicked === "popup popup_theme_opened" ||
+    elementClicked === "popup__image"
   ) {
+    setearClosePopUp();
+  }
+});
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape" && popUp.classList.contains("popup_theme_opened")) {
     setearClosePopUp();
   }
 });
