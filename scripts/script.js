@@ -168,3 +168,14 @@ function handleProfileFormSubmit(evt) {
 }
 
 popUpForm.addEventListener("submit", handleProfileFormSubmit);
+
+document.addEventListener("click", function (evt) {
+  //console.log(evt.target.className);
+  const elementClicked = evt.target.className;
+  if (
+    elementClicked === "popup__container" ||
+    elementClicked === "popup popup_theme_opened"
+  ) {
+    setearClosePopUp();
+  }
+});
