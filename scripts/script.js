@@ -16,8 +16,8 @@ const popUpTittle = document.querySelector(".popup__title");
 const popUpInput1 = document.querySelector(".popup__input_1");
 const popUpInput2 = document.querySelector(".popup__input_2");
 const popUpButtonSave = document.querySelector(".popup__button-save");
-const popUpErrorInput1 = document.querySelector(".input_1-error");
-const popUpErrorInput2 = document.querySelector(".input_2-error");
+const popUpErrorInput1 = document.querySelector(".input-1-error");
+const popUpErrorInput2 = document.querySelector(".input-2-error");
 
 const initialCards = [
   {
