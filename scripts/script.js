@@ -1,8 +1,10 @@
+import { Card } from "./Card.js";
+
 const profileName = document.querySelector(".profile__name");
 const profileSubtitle = document.querySelector(".profile__subtitle");
 const profileButtonEdit = document.querySelector(".profile__button-edit");
 const profileButtonAdd = document.querySelector(".profile__button-add");
-
+/*
 const popUp = document.querySelector(".popup");
 const popUpContainer = document.querySelector(".popup__container");
 const popUpImage = document.querySelector(".popup__image");
@@ -11,6 +13,7 @@ const popUpButtonClose = document.querySelector(".popup__button-close");
 const popUpButtonCloseImg = document.querySelector(
   ".popup__button-close_theme_image"
 );
+*/
 const popUpForm = document.querySelector(".popup__form");
 const popUpTittle = document.querySelector(".popup__title");
 const popUpInput1 = document.querySelector(".popup__input_1");
@@ -52,6 +55,7 @@ initialCards.forEach((element) => {
 
 function addElement(name, link, flag = true) {
   const elements = document.querySelector(".elements");
+  /*
   const elementTemplate = document.querySelector("#element-template").content;
   const elementItem = elementTemplate.querySelector(".element").cloneNode(true);
 
@@ -88,15 +92,23 @@ function addElement(name, link, flag = true) {
       elementItem.remove();
     });
 
-  flag === true ? elements.append(elementItem) : elements.prepend(elementItem);
+  flag === true ? elements.append(elementItem) : elements.prepend(elementItem);*/
+
+  const elementItem = new Card(name, link, "#element-template");
+  elementItem.generateCard();
+  //console.log(elementItem._element);
+  flag === true
+    ? elements.append(elementItem._element)
+    : elements.prepend(elementItem._element);
 }
 
+/*
 function setearOpenPopUp() {
   popUp.classList.toggle("popup_theme_opened");
   popUp.classList.remove("popup_theme_closed");
   popUpContainer.setAttribute("style", "visibility: visible;");
   popUpImage.setAttribute("style", "display: none;");
-}
+}*/
 
 profileButtonEdit.addEventListener("click", function () {
   setearOpenPopUp();
@@ -126,6 +138,7 @@ profileButtonAdd.addEventListener("click", function () {
   popUpInput2.setAttribute("type", "url");
 });
 
+/*
 function setearClosePopUp() {
   popUp.classList.toggle("popup_theme_opened");
   popUp.classList.add("popup_theme_closed");
@@ -143,6 +156,7 @@ popUpButtonClose.addEventListener("click", function () {
 popUpButtonCloseImg.addEventListener("click", function () {
   setearClosePopUp();
 });
+*/
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
