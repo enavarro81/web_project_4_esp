@@ -126,25 +126,6 @@ function handleProfileFormSubmit(evt) {
 
 popUpForm.addEventListener("submit", handleProfileFormSubmit);
 
-/*
-document.addEventListener("click", function (evt) {
-  const elementClicked = evt.target.className;
-  if (
-    elementClicked === "popup__container" ||
-    elementClicked === "popup popup_theme_opened" ||
-    elementClicked === "popup__image"
-  ) {
-    setearClosePopUp();
-  }
-});
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape" && popUp.classList.contains("popup_theme_opened")) {
-    setearClosePopUp();
-  }
-});
-*/
-
 popUpInput1.addEventListener("input", function (evt) {
   //llamo a la clase FormValidator.js para validar input1
   const elementValidate = new FormValidator(config, popUpInput1);

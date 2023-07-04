@@ -15,7 +15,6 @@ export class Card {
   }
 
   _showElement(event) {
-    //console.log("click en foto");
     popUp.classList.toggle("popup_theme_opened");
     popUp.classList.remove("popup_theme_closed");
     popUpContainer.setAttribute("style", "display: none;");
@@ -46,14 +45,12 @@ export class Card {
     this._element
       .querySelector(".element__like")
       .addEventListener("click", (event) => {
-        //console.log("click en like");
         this._likeElement(event);
       });
 
     this._element
       .querySelector(".element__trash")
       .addEventListener("click", () => {
-        //console.log("click en trash");
         this._removeElement();
       });
   }
