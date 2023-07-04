@@ -17,12 +17,6 @@ function setearOpenPopUp() {
 function setearClosePopUp() {
   popUp.classList.toggle("popup_theme_opened");
   popUp.classList.add("popup_theme_closed");
-  /*
-  popUpInput1.classList.remove("popup__input_type_error");
-  popUpErrorInput1.classList.remove("popup__error_visible");
-  popUpInput2.classList.remove("popup__input_type_error");
-  popUpErrorInput2.classList.remove("popup__error_visible");
-*/
 }
 
 popUpButtonClose.addEventListener("click", function () {
@@ -31,4 +25,21 @@ popUpButtonClose.addEventListener("click", function () {
 
 popUpButtonCloseImg.addEventListener("click", function () {
   setearClosePopUp();
+});
+
+document.addEventListener("click", function (evt) {
+  const elementClicked = evt.target.className;
+  if (
+    elementClicked === "popup__container" ||
+    elementClicked === "popup popup_theme_opened" ||
+    elementClicked === "popup__image"
+  ) {
+    setearClosePopUp();
+  }
+});
+
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape" && popUp.classList.contains("popup_theme_opened")) {
+    setearClosePopUp();
+  }
 });
