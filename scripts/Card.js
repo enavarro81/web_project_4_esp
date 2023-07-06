@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------------------
+// esta clase permite crear plantillas predefinidas de elementos para los lugares
+//-----------------------------------------------------------------------------------------
+
 export class Card {
   constructor(name, link, cardSelector) {
     this._name = name;
@@ -15,10 +19,11 @@ export class Card {
   }
 
   _showElement(event) {
-    popUp.classList.toggle("popup_theme_opened");
-    popUp.classList.remove("popup_theme_closed");
-    popUpContainer.setAttribute("style", "display: none;");
-    popUpImage.setAttribute("style", "visibility: visible;");
+    popUp.classList.toggle(OPENED_POPUP);
+    popUp.classList.remove(CLOSED_POPUP);
+    popUpContainer.classList.add(POPUP_NODISPLAY);
+    popUpImage.classList.add(POPUP_IMAGE_VISIBLE);
+    popUpImage.classList.remove(POPUP_IMAGE_NODISPLAY);
     popUpImage
       .querySelector(".popup__image-frame")
       .setAttribute("src", event.target.style.backgroundImage.split('"')[1]);
@@ -27,8 +32,8 @@ export class Card {
   }
 
   _likeElement(event) {
-    event.target.classList.toggle("element__like_theme_inactive");
-    event.target.classList.toggle("element__like_theme_active");
+    event.target.classList.toggle(LIKE_INACTIVE);
+    event.target.classList.toggle(LIKE_ACTIVE);
   }
 
   _removeElement() {
@@ -62,7 +67,7 @@ export class Card {
     this._element.querySelector(".element__title").textContent = this._name;
     this._element
       .querySelector(".element__image")
-      .setAttribute("style", "background-image: url(" + this._link + ")");
+      .setAttribute("style", `background-image: url(${this._link})`);
 
     return this._element;
   }

@@ -7,12 +7,25 @@ const profileButtonEdit = document.querySelector(".profile__button-edit");
 const profileButtonAdd = document.querySelector(".profile__button-add");
 
 const popUpForm = document.querySelector(".popup__form");
-const popUpTittle = document.querySelector(".popup__title");
-const popUpInput1 = document.querySelector(".popup__input_1");
-const popUpInput2 = document.querySelector(".popup__input_2");
+const popUpTitle = document.querySelector(".popup__title");
+const popUpSubtitle1 = document.querySelector(".popup__input_1");
+const popUpSubtitle2 = document.querySelector(".popup__input_2");
 const popUpButtonSave = document.querySelector(".popup__button-save");
-const popUpErrorInput1 = document.querySelector(".input-1-error");
-const popUpErrorInput2 = document.querySelector(".input-2-error");
+const popUpErrorSubtitle1 = document.querySelector(".input-1-error");
+const popUpErrorSubtitle2 = document.querySelector(".input-2-error");
+
+//declaro objeto y variables con parámetros de nombre de css para validación de formularios
+const config = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+const elementValidateSubtitle1 = new FormValidator(config, popUpSubtitle1);
+const elementValidateSubtitle2 = new FormValidator(config, popUpSubtitle2);
 
 const initialCards = [
   {
@@ -41,111 +54,90 @@ const initialCards = [
   },
 ];
 
-const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button-save",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
 initialCards.forEach((element) => {
   addElement(element.name, element.link);
 });
 
 function addElement(name, link, flag = true) {
   const elements = document.querySelector(".elements");
-
-  //llamo a la clase Card.js
   const elementItem = new Card(name, link, "#element-template");
-  elementItem.generateCard();
+  const item = elementItem.generateCard();
 
-  flag === true
-    ? elements.append(elementItem._element)
-    : elements.prepend(elementItem._element);
+  flag === true ? elements.append(item) : elements.prepend(item);
 }
 
+//se setean los componentes para los requerimientos de formulario EDITAR PERFIL
 profileButtonEdit.addEventListener("click", function () {
-  setearOpenPopUp();
-  popUpTittle.textContent = "Editar perfil";
-  popUpInput1.value = profileName.innerHTML;
-  popUpInput1.setAttribute("placeholder", "Nombre");
-  popUpInput1.setAttribute("minlength", "2");
-  popUpInput1.setAttribute("maxlength", "40");
-  popUpInput2.value = profileSubtitle.innerHTML;
-  popUpInput2.setAttribute("placeholder", "Acerca de mi");
-  popUpInput2.setAttribute("minlength", "2");
-  popUpInput2.setAttribute("maxlength", "200");
-  popUpInput2.removeAttribute("type");
+  openPopUp();
+  popUpTitle.textContent = "Editar perfil";
+  popUpSubtitle1.value = profileName.innerHTML;
+  popUpSubtitle1.setAttribute("placeholder", "Nombre");
+  popUpSubtitle1.setAttribute("minlength", "2");
+  popUpSubtitle1.setAttribute("maxlength", "40");
+  popUpSubtitle2.value = profileSubtitle.innerHTML;
+  popUpSubtitle2.setAttribute("placeholder", "Acerca de mi");
+  popUpSubtitle2.setAttribute("minlength", "2");
+  popUpSubtitle2.setAttribute("maxlength", "200");
+  popUpSubtitle2.removeAttribute("type");
 
-  popUpButtonSave.classList.remove("popup__button_disabled");
-  restear_errores();
+  popUpButtonSave.classList.remove(BUTTON_DISABLED);
+  borrarAlertaErrores();
 });
 
+//se setean los componentes para los requerimientos de formulario NUEVO LUGAR
 profileButtonAdd.addEventListener("click", function () {
-  setearOpenPopUp();
-  popUpTittle.textContent = "Nuevo lugar";
-  popUpInput1.value = "";
-  popUpInput1.setAttribute("placeholder", "Título");
-  popUpInput1.setAttribute("minlength", "2");
-  popUpInput1.setAttribute("maxlength", "30");
-  popUpInput2.value = "";
-  popUpInput2.setAttribute("placeholder", "Enlace a la imagen");
-  popUpInput2.removeAttribute("minlength");
-  popUpInput2.removeAttribute("maxlength");
-  popUpInput2.setAttribute("type", "url");
+  openPopUp();
+  popUpTitle.textContent = "Nuevo lugar";
+  popUpSubtitle1.value = "";
+  popUpSubtitle1.setAttribute("placeholder", "Título");
+  popUpSubtitle1.setAttribute("minlength", "2");
+  popUpSubtitle1.setAttribute("maxlength", "30");
+  popUpSubtitle2.value = "";
+  popUpSubtitle2.setAttribute("placeholder", "Enlace a la imagen");
+  popUpSubtitle2.removeAttribute("minlength");
+  popUpSubtitle2.removeAttribute("maxlength");
+  popUpSubtitle2.setAttribute("type", "url");
 
-  popUpButtonSave.classList.add("popup__button_disabled");
-  restear_errores();
+  popUpButtonSave.classList.add(BUTTON_DISABLED);
+  borrarAlertaErrores();
 });
 
-function restear_errores() {
-  popUpInput1.classList.remove("popup__input_type_error");
-  popUpInput2.classList.remove("popup__input_type_error");
-  popUpErrorInput1.classList.remove("popup__error_visible");
-  popUpErrorInput2.classList.remove("popup__error_visible");
+function borrarAlertaErrores() {
+  popUpSubtitle1.classList.remove(FORM_INPUT_ERROR);
+  popUpSubtitle2.classList.remove(FORM_INPUT_ERROR);
+  popUpErrorSubtitle1.classList.remove(INPUT_ERROR_VISIBLE);
+  popUpErrorSubtitle2.classList.remove(INPUT_ERROR_VISIBLE);
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  if (popUpTittle.textContent === "Editar perfil") {
-    profileName.innerHTML = popUpInput1.value;
-    profileSubtitle.innerHTML = popUpInput2.value;
+  if (popUpTitle.textContent === "Editar perfil") {
+    profileName.textContent = popUpSubtitle1.value;
+    profileSubtitle.textContent = popUpSubtitle2.value;
   } else {
-    addElement(popUpInput1.value, popUpInput2.value, false);
+    addElement(popUpSubtitle1.value, popUpSubtitle2.value, false);
   }
 
-  popUpInput1.value = "";
-  popUpInput2.value = "";
-  popUp.classList.toggle("popup_theme_opened");
-  popUp.classList.add("popup_theme_closed");
-  popUpButtonSave.classList.add("popup__button_disabled");
+  popUpSubtitle1.value = "";
+  popUpSubtitle2.value = "";
+  popUp.classList.toggle(OPENED_POPUP);
+  popUp.classList.add(CLOSED_POPUP);
+  popUpButtonSave.classList.add(BUTTON_DISABLED);
 }
 
 popUpForm.addEventListener("submit", handleProfileFormSubmit);
 
-popUpInput1.addEventListener("input", function (evt) {
-  //llamo a la clase FormValidator.js para validar input1
-  const elementValidate = new FormValidator(config, popUpInput1);
-  elementValidate.ValidateElement();
-});
-
-popUpInput1.addEventListener("keypress", function (evt) {
+popUpForm.addEventListener("keypress", function (evt) {
   if (evt.key == "Enter") {
     evt.preventDefault();
   }
 });
 
-popUpInput2.addEventListener("input", function (evt) {
-  //llamo a la clase FormValidator.js para validar input2
-  const elementValidate = new FormValidator(config, popUpInput2);
-  elementValidate.ValidateElement();
-});
-
-popUpInput2.addEventListener("keypress", function (evt) {
-  if (evt.key == "Enter") {
-    evt.preventDefault();
+popUpForm.addEventListener("input", function (evt) {
+  if (evt.target.id == "input-1") {
+    elementValidateSubtitle1.validateElement();
+  } else {
+    elementValidateSubtitle2.validateElement();
   }
 });

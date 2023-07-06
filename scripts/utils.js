@@ -7,24 +7,36 @@ const popUpButtonCloseImg = document.querySelector(
   ".popup__button-close_theme_image"
 );
 
-function setearOpenPopUp() {
-  popUp.classList.toggle("popup_theme_opened");
-  popUp.classList.remove("popup_theme_closed");
-  popUpContainer.setAttribute("style", "visibility: visible;");
-  popUpImage.setAttribute("style", "display: none;");
+//declaro variables de css
+const OPENED_POPUP = "popup_theme_opened";
+const CLOSED_POPUP = "popup_theme_closed";
+const POPUP_VISIBLE = "popup__container_theme_visible";
+const POPUP_NODISPLAY = "popup__container_theme_no-display";
+const POPUP_IMAGE_VISIBLE = "popup__image_theme_visible";
+const POPUP_IMAGE_NODISPLAY = "popup__image_theme_no-display";
+const BUTTON_DISABLED = "popup__button_disabled";
+const FORM_INPUT_ERROR = "popup__input_type_error";
+const INPUT_ERROR_VISIBLE = "popup__error_visible";
+const LIKE_INACTIVE = "element__like_theme_inactive";
+const LIKE_ACTIVE = "element__like_theme_active";
+
+function openPopUp() {
+  popUp.classList.toggle(OPENED_POPUP);
+  popUp.classList.remove(CLOSED_POPUP);
+  popUpContainer.classList.add(POPUP_VISIBLE);
+  popUpContainer.classList.remove(POPUP_NODISPLAY);
+  popUpImage.classList.add(POPUP_IMAGE_NODISPLAY);
 }
 
-function setearClosePopUp() {
-  popUp.classList.toggle("popup_theme_opened");
-  popUp.classList.add("popup_theme_closed");
+function closePopUp() {
+  popUp.classList.toggle(OPENED_POPUP);
+  popUp.classList.add(CLOSED_POPUP);
 }
 
-popUpButtonClose.addEventListener("click", function () {
-  setearClosePopUp();
-});
-
-popUpButtonCloseImg.addEventListener("click", function () {
-  setearClosePopUp();
+popUp.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("popup__button-close")) {
+    closePopUp();
+  }
 });
 
 document.addEventListener("click", function (evt) {
@@ -34,12 +46,12 @@ document.addEventListener("click", function (evt) {
     elementClicked === "popup popup_theme_opened" ||
     elementClicked === "popup__image"
   ) {
-    setearClosePopUp();
+    closePopUp();
   }
 });
 
 document.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape" && popUp.classList.contains("popup_theme_opened")) {
-    setearClosePopUp();
+  if (evt.key === "Escape" && popUp.classList.contains(OPENED_POPUP)) {
+    closePopUp();
   }
 });

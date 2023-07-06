@@ -1,7 +1,13 @@
+//-----------------------------------------------------------------------------------------
+// esta clase permite validar un componente de un formulario.
+// en caso de que todos los componentes sean válidos, se activa el botón de GUARDAR
+//-----------------------------------------------------------------------------------------
+
 export class FormValidator {
   constructor(config, element) {
     this._config = config;
     this._element = element;
+    this._formElement = document.querySelector(config.formSelector);
   }
 
   _hasInvalidInput(inputList) {
@@ -41,22 +47,21 @@ export class FormValidator {
   }
 
   _checkInputValidity(inputElement, objectConfig) {
-    const formElement = document.querySelector(objectConfig.formSelector);
     if (!inputElement.validity.valid) {
       this._showInputError(
-        formElement,
+        this._formElement,
         inputElement,
         inputElement.validationMessage,
         objectConfig
       );
     } else {
-      this._hideInputError(formElement, inputElement, objectConfig);
+      this._hideInputError(this._formElement, inputElement, objectConfig);
     }
 
-    this._toggleButtonState(formElement, objectConfig);
+    this._toggleButtonState(this._formElement, objectConfig);
   }
 
-  ValidateElement() {
+  validateElement() {
     this._checkInputValidity(this._element, this._config);
   }
 }
