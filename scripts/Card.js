@@ -2,10 +2,21 @@
 // esta clase permite crear plantillas predefinidas de elementos para los lugares
 //-----------------------------------------------------------------------------------------
 
+import {
+  OPENED_POPUP,
+  CLOSED_POPUP,
+  POPUP_NODISPLAY,
+  POPUP_IMAGE_VISIBLE,
+  POPUP_IMAGE_NODISPLAY,
+  LIKE_INACTIVE,
+  LIKE_ACTIVE,
+} from "../utils/constans.js";
+
 export class Card {
-  constructor(name, link, cardSelector) {
-    this._name = name;
-    this._link = link;
+  constructor({ data, handleCardClick, cardSelector }) {
+    this._name = data.name;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
@@ -16,19 +27,6 @@ export class Card {
       .cloneNode(true);
 
     return cardElement;
-  }
-
-  _showElement(event) {
-    popUp.classList.toggle(OPENED_POPUP);
-    popUp.classList.remove(CLOSED_POPUP);
-    popUpContainer.classList.add(POPUP_NODISPLAY);
-    popUpImage.classList.add(POPUP_IMAGE_VISIBLE);
-    popUpImage.classList.remove(POPUP_IMAGE_NODISPLAY);
-    popUpImage
-      .querySelector(".popup__image-frame")
-      .setAttribute("src", event.target.style.backgroundImage.split('"')[1]);
-    popUpImageCaption.textContent =
-      event.target.parentElement.children[2].children[0].textContent;
   }
 
   _likeElement(event) {
@@ -44,7 +42,7 @@ export class Card {
     this._element
       .querySelector(".element__image")
       .addEventListener("click", (event) => {
-        this._showElement(event);
+        this._handleCardClick(event);
       });
 
     this._element
