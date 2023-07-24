@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------------------
+// esta clase permite crear el popup que contendrá la información del usuario, el fomulario y los lugares
+//-----------------------------------------------------------------------------------------
+
 import {
   popUpContainer,
   popUpImage,

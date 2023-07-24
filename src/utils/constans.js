@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------------------
 // archivo que contiene las variables que se usan en todo el sitio
 //-----------------------------------------------------------------------------------------
-import { FormValidator } from "../scripts/FormValidator.js";
+import { FormValidator } from "../components/FormValidator.js";
 
 //variables perfil
 export const profileName = document.querySelector(".profile__name");

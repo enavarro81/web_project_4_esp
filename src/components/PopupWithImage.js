@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------------------
+// esta clase permite mostrar los popups con la imagen y descripción de los lugares
+//-----------------------------------------------------------------------------------------
+
 import Popup from "./Popup.js";
 
 import {

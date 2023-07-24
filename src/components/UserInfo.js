@@ -1,3 +1,7 @@
+//-----------------------------------------------------------------------------------------
+// esta clase permite consultar y actualizar la información del usuario
+//-----------------------------------------------------------------------------------------
+
 export default class UserInfo {
   constructor(userName, userJob) {
     this._userName = userName;
