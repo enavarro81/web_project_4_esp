@@ -6,67 +6,97 @@ import {
   popUpContainer,
   popUpImage,
   popUpButtonSave,
-  elementValidateSubtitle1,
-  elementValidateSubtitle2,
-  OPENED_POPUP,
-  CLOSED_POPUP,
-  POPUP_VISIBLE,
-  POPUP_NODISPLAY,
-  POPUP_IMAGE_NODISPLAY,
-  BUTTON_DISABLED,
+  popUpMainSubtitle,
+  elementValidateMainSubtitle,
+  elementValidateSubtitle,
+  openedPopup,
+  closedPopup,
+  popupVisible,
+  popupNoDisplay,
+  popupImageNoDisplay,
+  inputErrorVisible,
+  buttonDisabled,
 } from "../utils/constans.js";
 
 export default class Popup {
   constructor(containerSelector) {
-    //console.log("POPUP: " + containerSelector);
     this._container = document.querySelector(containerSelector);
     this.setEventListeners();
   }
 
   openPopUp() {
-    //this._container.classList.toggle(OPENED_POPUP);
-    this._container.classList.add(OPENED_POPUP);
-    this._container.classList.remove(CLOSED_POPUP);
-    popUpContainer.classList.add(POPUP_VISIBLE);
-    popUpContainer.classList.remove(POPUP_NODISPLAY);
-    popUpImage.classList.add(POPUP_IMAGE_NODISPLAY);
+    this._container.classList.add(openedPopup);
+    this._container.classList.remove(closedPopup);
+    popUpContainer.classList.add(popupVisible);
+    popUpContainer.classList.remove(popupNoDisplay);
+    popUpImage.classList.add(popupImageNoDisplay);
+
+    this.setPopUpEventListeners();
   }
 
   closePopUp() {
-    //this._container.classList.toggle(OPENED_POPUP);
-    this._container.classList.remove(OPENED_POPUP);
-    this._container.classList.add(CLOSED_POPUP);
-    popUpButtonSave.classList.add(BUTTON_DISABLED);
+    this._container.classList.remove(openedPopup);
+    this._container.classList.add(closedPopup);
+    popUpButtonSave.classList.add(buttonDisabled);
+
+    this.unsetDocumentClickEventListener();
+    this.unsetDocumentKeydownEventListener();
   }
 
   _handleEscClose() {
     this.closePopUp();
   }
 
+  unsetDocumentClickEventListener() {
+    document.removeEventListener("click", this.setupClickListener);
+  }
+
+  unsetDocumentKeydownEventListener() {
+    document.removeEventListener("keydown", this.setupKeydownListener);
+  }
+
+  setDocumentClickEventListener(evt) {
+    const elementClicked = evt.target.className;
+    if (
+      elementClicked === "popup__container" ||
+      elementClicked === "popup popup_theme_opened" ||
+      elementClicked === "popup__image"
+    ) {
+      this.closePopUp();
+    }
+  }
+
+  setDocumentKeydownEventListener(evt) {
+    if (
+      evt.key === "Escape" &&
+      this._container.classList.contains(openedPopup)
+    ) {
+      this._handleEscClose();
+    }
+  }
+
+  setPopUpEventListeners() {
+    if (!this.setupClickListener) {
+      this.setupClickListener = (evt) => {
+        this.setDocumentClickEventListener(evt);
+      };
+    }
+
+    document.addEventListener("click", this.setupClickListener);
+
+    if (!this.setupKeydownListener) {
+      this.setupKeydownListener = (evt) => {
+        this.setDocumentKeydownEventListener(evt);
+      };
+    }
+
+    document.addEventListener("keydown", this.setupKeydownListener);
+  }
+
   setEventListeners() {
     this._container.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup__button-close")) {
         this.closePopUp();
-      }
-    });
-
-    document.addEventListener("click", (evt) => {
-      const elementClicked = evt.target.className;
-      if (
-        elementClicked === "popup__container" ||
-        elementClicked === "popup popup_theme_opened" ||
-        elementClicked === "popup__image"
-      ) {
-        this.closePopUp();
-      }
-    });
-
-    document.addEventListener("keydown", (evt) => {
-      if (
-        evt.key === "Escape" &&
-        this._container.classList.contains(OPENED_POPUP)
-      ) {
-        this._handleEscClose();
       }
     });
 
@@ -78,9 +108,9 @@ export default class Popup {
 
     this._container.addEventListener("input", (evt) => {
       if (evt.target.id == "input-1") {
-        elementValidateSubtitle1.validateElement();
+        elementValidateMainSubtitle.validateElement();
       } else {
-        elementValidateSubtitle2.validateElement();
+        elementValidateSubtitle.validateElement();
       }
     });
   }

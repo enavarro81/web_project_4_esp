@@ -30,6 +30,7 @@ const checkInputValidity = (formElement, inputElement, objectConfig) => {
   }
 };
 
+// esta corección no tiene sentido por que has es un verbo (tener)
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;

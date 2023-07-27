@@ -1,8 +1,8 @@
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 import {
   profileName,
@@ -10,19 +10,20 @@ import {
   profileButtonEdit,
   profileButtonAdd,
   popUpTitle,
-  popUpSubtitle1,
-  popUpSubtitle2,
+  popUpMainSubtitle,
+  popUpSubtitle,
   popUpButtonSave,
   initialCards,
-  BUTTON_DISABLED,
+  buttonDisabled,
 } from "../utils/constans.js";
 
+import "../pages/index.css"; // agrega la importación del archivo principal de hojas de estilo
+
 //inicializo el nombre a mostrar en la pagina
-const defaultUserName = new UserInfo(
+const UserName = new UserInfo(
   profileName.textContent,
   profileSubtitle.textContent
 );
-let dataUserInfo = defaultUserName.getUserInfo();
 
 const defaultPop = new PopupWithForm({
   containerSelector: ".popup",
@@ -32,23 +33,21 @@ const defaultPop = new PopupWithForm({
     if (popUpTitle.textContent === "Editar perfil") {
       const data = defaultPop._getInputValues();
 
-      // prettier-ignore
       profileName.textContent = data["input-1"];
       profileSubtitle.textContent = data["input-2"];
 
-      defaultUserName.setUserInfo(data["input-1"], data["input-2"]);
-      // prettier-ignore
+      UserName.setUserInfo(data["input-1"], data["input-2"]);
     } else {
       const data = {
-        link: popUpSubtitle2.value,
-        name: popUpSubtitle1.value,
+        link: popUpSubtitle.value,
+        name: popUpMainSubtitle.value,
       };
 
       const elementItem = new Card({
         data,
         handleCardClick: () => {
           const data = {
-            image: event.target.style.backgroundImage.split('"')[1],
+            image: event.target.src,
             title:
               event.target.parentElement.children[2].children[0].textContent,
           };
@@ -59,15 +58,15 @@ const defaultPop = new PopupWithForm({
       });
       const item = elementItem.generateCard();
 
-      defaultCard.setAppendFalse();
-      defaultCard.addItem(item);
+      defaultCards.setAppendFalse();
+      defaultCards.addItem(item);
     }
 
     defaultPop.closePopUp();
   },
 });
 
-const defaultCard = new Section(
+const defaultCards = new Section(
   {
     data: initialCards,
     renderer: (item) => {
@@ -75,7 +74,7 @@ const defaultCard = new Section(
         data: item,
         handleCardClick: () => {
           const data = {
-            image: event.target.style.backgroundImage.split('"')[1],
+            image: event.target.src,
             title:
               event.target.parentElement.children[2].children[0].textContent,
           };
@@ -86,33 +85,32 @@ const defaultCard = new Section(
       });
       const element = elementItem.generateCard();
 
-      defaultCard.addItem(element);
+      defaultCards.addItem(element);
     },
   },
   ".elements"
 );
 
-defaultCard.renderItems();
+defaultCards.renderItems();
 
 //se setean los componentes para los requerimientos de formulario EDITAR PERFIL
 profileButtonEdit.addEventListener("click", function () {
   defaultPop.openPopUp();
-  dataUserInfo = defaultUserName.getUserInfo();
 
   popUpTitle.textContent = "Editar perfil";
 
-  popUpSubtitle1.value = dataUserInfo.name;
-  popUpSubtitle1.setAttribute("placeholder", "Nombre");
-  popUpSubtitle1.setAttribute("minlength", "2");
-  popUpSubtitle1.setAttribute("maxlength", "40");
+  popUpMainSubtitle.value = UserName.getUserInfo().name;
+  popUpMainSubtitle.setAttribute("placeholder", "Nombre");
+  popUpMainSubtitle.setAttribute("minlength", "2");
+  popUpMainSubtitle.setAttribute("maxlength", "40");
 
-  popUpSubtitle2.value = dataUserInfo.job;
-  popUpSubtitle2.setAttribute("placeholder", "Acerca de mi");
-  popUpSubtitle2.setAttribute("minlength", "2");
-  popUpSubtitle2.setAttribute("maxlength", "200");
-  popUpSubtitle2.removeAttribute("type");
+  popUpSubtitle.value = UserName.getUserInfo().job;
+  popUpSubtitle.setAttribute("placeholder", "Acerca de mi");
+  popUpSubtitle.setAttribute("minlength", "2");
+  popUpSubtitle.setAttribute("maxlength", "200");
+  popUpSubtitle.removeAttribute("type");
 
-  popUpButtonSave.classList.remove(BUTTON_DISABLED);
+  popUpButtonSave.classList.remove(buttonDisabled);
 });
 
 //se setean los componentes para los requerimientos de formulario NUEVO LUGAR
@@ -120,14 +118,14 @@ profileButtonAdd.addEventListener("click", function () {
   defaultPop.openPopUp();
   popUpTitle.textContent = "Nuevo lugar";
 
-  popUpSubtitle1.setAttribute("placeholder", "Título");
-  popUpSubtitle1.setAttribute("minlength", "2");
-  popUpSubtitle1.setAttribute("maxlength", "30");
+  popUpMainSubtitle.setAttribute("placeholder", "Título");
+  popUpMainSubtitle.setAttribute("minlength", "2");
+  popUpMainSubtitle.setAttribute("maxlength", "30");
 
-  popUpSubtitle2.setAttribute("placeholder", "Enlace a la imagen");
-  popUpSubtitle2.removeAttribute("minlength");
-  popUpSubtitle2.removeAttribute("maxlength");
-  popUpSubtitle2.setAttribute("type", "url");
+  popUpSubtitle.setAttribute("placeholder", "Enlace a la imagen");
+  popUpSubtitle.removeAttribute("minlength");
+  popUpSubtitle.removeAttribute("maxlength");
+  popUpSubtitle.setAttribute("type", "url");
 
-  popUpButtonSave.classList.add(BUTTON_DISABLED);
+  popUpButtonSave.classList.add(buttonDisabled);
 });

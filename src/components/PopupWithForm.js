@@ -5,15 +5,16 @@
 import Popup from "./Popup.js";
 
 import {
-  popUpSubtitle1,
-  popUpSubtitle2,
-  popUpErrorSubtitle1,
-  popUpErrorSubtitle2,
-  OPENED_POPUP,
-  CLOSED_POPUP,
-  BUTTON_DISABLED,
-  FORM_INPUT_ERROR,
-  INPUT_ERROR_VISIBLE,
+  popUpMainSubtitle,
+  popUpSubtitle,
+  popUpErrorMainSubtitle,
+  popUpErrorSubtitle,
+  popUpButtonSave,
+  openedPopup,
+  closedPopup,
+  buttonDisabled,
+  formInputError,
+  inputErrorVisible,
 } from "../utils/constans.js";
 
 export default class PopupWithForm extends Popup {
@@ -33,7 +34,6 @@ export default class PopupWithForm extends Popup {
     // Agrega los valores de los campos a este objeto
     this._inputList.forEach((input) => {
       this._formValues[input.name] = input.value;
-      //console.log(input.name + ":" + input.value);
     });
 
     // Devuelve el objeto values
@@ -46,10 +46,10 @@ export default class PopupWithForm extends Popup {
       input.value = "";
     });
 
-    popUpSubtitle1.classList.remove(FORM_INPUT_ERROR);
-    popUpSubtitle2.classList.remove(FORM_INPUT_ERROR);
-    popUpErrorSubtitle1.classList.remove(INPUT_ERROR_VISIBLE);
-    popUpErrorSubtitle2.classList.remove(INPUT_ERROR_VISIBLE);
+    popUpMainSubtitle.classList.remove(formInputError);
+    popUpSubtitle.classList.remove(formInputError);
+    popUpErrorMainSubtitle.classList.remove(inputErrorVisible);
+    popUpErrorSubtitle.classList.remove(inputErrorVisible);
   }
 
   closePopUp() {
@@ -61,6 +61,22 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._container.addEventListener("submit", (evt) => {
       this._handleFormSubmit(evt);
+    });
+
+    popUpMainSubtitle.addEventListener("keypress", (evt) => {
+      if (evt.key === "Enter") {
+        if (!popUpButtonSave.classList.contains(buttonDisabled)) {
+          this._handleFormSubmit(evt);
+        }
+      }
+    });
+
+    popUpSubtitle.addEventListener("keypress", (evt) => {
+      if (evt.key === "Enter") {
+        if (!popUpButtonSave.classList.contains(buttonDisabled)) {
+          this._handleFormSubmit(evt);
+        }
+      }
     });
   }
 }

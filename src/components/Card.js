@@ -3,13 +3,13 @@
 //-----------------------------------------------------------------------------------------
 
 import {
-  OPENED_POPUP,
-  CLOSED_POPUP,
-  POPUP_NODISPLAY,
-  POPUP_IMAGE_VISIBLE,
-  POPUP_IMAGE_NODISPLAY,
-  LIKE_INACTIVE,
-  LIKE_ACTIVE,
+  openedPopup,
+  closedPopup,
+  popupNoDisplay,
+  popupImageVisible,
+  popupImageNoDisplay,
+  likeInactive,
+  likeActive,
 } from "../utils/constans.js";
 
 export class Card {
@@ -30,8 +30,8 @@ export class Card {
   }
 
   _likeElement(event) {
-    event.target.classList.toggle(LIKE_INACTIVE);
-    event.target.classList.toggle(LIKE_ACTIVE);
+    event.target.classList.toggle(likeInactive);
+    event.target.classList.toggle(likeActive);
   }
 
   _removeElement() {
@@ -63,9 +63,14 @@ export class Card {
     this._setEventListener();
 
     this._element.querySelector(".element__title").textContent = this._name;
+
     this._element
       .querySelector(".element__image")
-      .setAttribute("style", `background-image: url(${this._link})`);
+      .setAttribute("src", this._link);
+
+    this._element
+      .querySelector(".element__image")
+      .setAttribute("alt", this._name);
 
     return this._element;
   }
