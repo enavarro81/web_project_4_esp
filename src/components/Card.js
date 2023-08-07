@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------------------
 // esta clase permite crear plantillas predefinidas de elementos para los lugares
 //-----------------------------------------------------------------------------------------
+import PopupWithForm from "../components/PopupWithForm.js";
 
 import {
   openedPopup,
@@ -10,7 +11,17 @@ import {
   popupImageNoDisplay,
   likeInactive,
   likeActive,
+  popUpTitle,
+  popUpMainSubtitle,
+  popUpErrorMainSubtitle,
+  popUpSubtitle,
+  popUpErrorSubtitle,
+  popUpButtonSave,
+  inputNoDisplay,
+  buttonDisabled,
 } from "../utils/constans.js";
+
+import { defaultPop } from "../pages/index.js";
 
 export class Card {
   constructor({ data, handleCardClick, cardSelector }) {
@@ -35,7 +46,18 @@ export class Card {
   }
 
   _removeElement() {
-    this._element.remove();
+    defaultPop.openPopUp(() => {
+      this._element.remove();
+    });
+
+    popUpTitle.textContent = "¿Estás seguro?";
+
+    popUpMainSubtitle.classList.add(inputNoDisplay);
+    popUpErrorMainSubtitle.classList.add(inputNoDisplay);
+    popUpSubtitle.classList.add(inputNoDisplay);
+    popUpErrorSubtitle.classList.add(inputNoDisplay);
+    popUpButtonSave.classList.remove(buttonDisabled);
+    popUpButtonSave.textContent = "Si";
   }
 
   _setEventListener() {

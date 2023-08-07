@@ -10,6 +10,10 @@ export const profileButtonEdit = document.querySelector(
   ".profile__button-edit"
 );
 export const profileButtonAdd = document.querySelector(".profile__button-add");
+export const profileAvatar = document.querySelector(".profile__avatar-image");
+export const profileAvatarButtonEdit = document.querySelector(
+  ".profile__avatar-button-edit"
+);
 
 //variables de popup
 export const popUpForm = document.querySelector(".popup__form");
@@ -41,6 +45,7 @@ export const popupImageNoDisplay = "popup__image_theme_no-display";
 export const buttonDisabled = "popup__button_disabled";
 export const formInputError = "popup__input_type_error";
 export const inputErrorVisible = "popup__error_visible";
+export const inputNoDisplay = "popup__input_type_no-display";
 export const likeInactive = "element__like_theme_inactive";
 export const likeActive = "element__like_theme_active";
 

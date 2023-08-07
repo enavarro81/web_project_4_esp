@@ -108,9 +108,19 @@ export default class Popup {
 
     this._container.addEventListener("input", (evt) => {
       if (evt.target.id == "input-1") {
-        elementValidateMainSubtitle.validateElement();
+        elementValidateMainSubtitle.validateElement(
+          document.querySelector(".popup__title").textContent ===
+            "Cambiar foto de perfil"
+            ? false
+            : true
+        );
       } else {
-        elementValidateSubtitle.validateElement();
+        elementValidateSubtitle.validateElement(
+          document.querySelector(".popup__title").textContent ===
+            "Cambiar foto de perfil"
+            ? false
+            : true
+        );
       }
     });
   }

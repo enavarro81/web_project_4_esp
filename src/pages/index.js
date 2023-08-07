@@ -9,12 +9,17 @@ import {
   profileSubtitle,
   profileButtonEdit,
   profileButtonAdd,
+  profileAvatar,
+  profileAvatarButtonEdit,
   popUpTitle,
   popUpMainSubtitle,
+  popUpErrorMainSubtitle,
   popUpSubtitle,
+  popUpErrorSubtitle,
   popUpButtonSave,
   initialCards,
   buttonDisabled,
+  inputNoDisplay,
 } from "../utils/constans.js";
 
 import "../pages/index.css"; // agrega la importación del archivo principal de hojas de estilo
@@ -25,7 +30,7 @@ const UserName = new UserInfo(
   profileSubtitle.textContent
 );
 
-const defaultPop = new PopupWithForm({
+export const defaultPop = new PopupWithForm({
   containerSelector: ".popup",
   formSelector: ".popup__input",
   handleFormSubmit: (evt) => {
@@ -37,7 +42,7 @@ const defaultPop = new PopupWithForm({
       profileSubtitle.textContent = data["input-2"];
 
       UserName.setUserInfo(data["input-1"], data["input-2"]);
-    } else {
+    } else if (popUpTitle.textContent === "Nuevo lugar") {
       const data = {
         link: popUpSubtitle.value,
         name: popUpMainSubtitle.value,
@@ -60,6 +65,9 @@ const defaultPop = new PopupWithForm({
 
       defaultCards.setAppendFalse();
       defaultCards.addItem(item);
+    } else if (popUpTitle.textContent === "Cambiar foto de perfil") {
+      profileAvatar.setAttribute("src", popUpMainSubtitle.value);
+      profileAvatar.setAttribute("alt", "avatar");
     }
 
     defaultPop.closePopUp();
@@ -103,6 +111,7 @@ profileButtonEdit.addEventListener("click", function () {
   popUpMainSubtitle.setAttribute("placeholder", "Nombre");
   popUpMainSubtitle.setAttribute("minlength", "2");
   popUpMainSubtitle.setAttribute("maxlength", "40");
+  popUpMainSubtitle.removeAttribute("type");
 
   popUpSubtitle.value = UserName.getUserInfo().job;
   popUpSubtitle.setAttribute("placeholder", "Acerca de mi");
@@ -110,7 +119,12 @@ profileButtonEdit.addEventListener("click", function () {
   popUpSubtitle.setAttribute("maxlength", "200");
   popUpSubtitle.removeAttribute("type");
 
+  popUpMainSubtitle.classList.remove(inputNoDisplay);
+  popUpErrorMainSubtitle.classList.remove(inputNoDisplay);
+  popUpSubtitle.classList.remove(inputNoDisplay);
+  popUpErrorSubtitle.classList.remove(inputNoDisplay);
   popUpButtonSave.classList.remove(buttonDisabled);
+  popUpButtonSave.textContent = "Guardar";
 });
 
 //se setean los componentes para los requerimientos de formulario NUEVO LUGAR
@@ -121,11 +135,34 @@ profileButtonAdd.addEventListener("click", function () {
   popUpMainSubtitle.setAttribute("placeholder", "Título");
   popUpMainSubtitle.setAttribute("minlength", "2");
   popUpMainSubtitle.setAttribute("maxlength", "30");
+  popUpMainSubtitle.removeAttribute("type");
 
   popUpSubtitle.setAttribute("placeholder", "Enlace a la imagen");
   popUpSubtitle.removeAttribute("minlength");
   popUpSubtitle.removeAttribute("maxlength");
   popUpSubtitle.setAttribute("type", "url");
 
+  popUpMainSubtitle.classList.remove(inputNoDisplay);
+  popUpErrorMainSubtitle.classList.remove(inputNoDisplay);
+  popUpSubtitle.classList.remove(inputNoDisplay);
+  popUpErrorSubtitle.classList.remove(inputNoDisplay);
   popUpButtonSave.classList.add(buttonDisabled);
+  popUpButtonSave.textContent = "Guardar";
+});
+
+profileAvatarButtonEdit.addEventListener("click", function () {
+  defaultPop.openPopUp();
+  popUpTitle.textContent = "Cambiar foto de perfil";
+
+  popUpMainSubtitle.setAttribute("placeholder", "Enlace a la imagen");
+  popUpMainSubtitle.removeAttribute("minlength");
+  popUpMainSubtitle.removeAttribute("maxlength");
+  popUpMainSubtitle.setAttribute("type", "url");
+
+  popUpMainSubtitle.classList.remove(inputNoDisplay);
+  popUpErrorMainSubtitle.classList.remove(inputNoDisplay);
+  popUpSubtitle.classList.add(inputNoDisplay);
+  popUpErrorSubtitle.classList.add(inputNoDisplay);
+  popUpButtonSave.classList.add(buttonDisabled);
+  popUpButtonSave.textContent = "Guardar";
 });

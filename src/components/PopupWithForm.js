@@ -23,6 +23,7 @@ export default class PopupWithForm extends Popup {
     this._formSelector = formSelector;
     this._handleFormSubmit = handleFormSubmit;
   }
+  onSubmitCallback = null;
 
   _getInputValues() {
     // Obtiene los elementos de todos los campos
@@ -38,6 +39,11 @@ export default class PopupWithForm extends Popup {
 
     // Devuelve el objeto values
     return this._formValues;
+  }
+
+  openPopUp(callback) {
+    super.openPopUp();
+    this.onSubmitCallback = callback;
   }
 
   _resetForm() {
@@ -61,6 +67,10 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._container.addEventListener("submit", (evt) => {
       this._handleFormSubmit(evt);
+      if (this.onSubmitCallback) {
+        this.onSubmitCallback();
+        this.onSubmitCallback = null;
+      }
     });
 
     popUpMainSubtitle.addEventListener("keypress", (evt) => {
