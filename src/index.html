@@ -53,10 +53,10 @@
             </div>
             <div class="profile__info">
               <div class="profile__title">
-                <h1 class="profile__name">Jacques Cousteau</h1>
+                <h1 class="profile__name"></h1>
                 <button class="profile__button-edit"></button>
               </div>
-              <p class="profile__subtitle">Explorador</p>
+              <p class="profile__subtitle"></p>
             </div>
           </div>
           <div class="profile__button-content">
@@ -71,12 +71,14 @@
     </div>
     <template id="element-template">
       <li class="element">
-        <!--- <div class="element__image"></div> --->
         <img class="element__image" src=" " alt=" " />
         <div class="element__trash"></div>
         <div class="element__descripcion">
           <p class="element__title"></p>
-          <div class="element__like element__like_theme_inactive"></div>
+          <div class="element__likes">
+            <div class="element__like element__like_theme_inactive"></div>
+            <div class="element__total-likes"></div>
+          </div>
         </div>
       </li>
     </template>

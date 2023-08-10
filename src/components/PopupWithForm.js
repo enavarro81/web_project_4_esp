@@ -10,8 +10,6 @@ import {
   popUpErrorMainSubtitle,
   popUpErrorSubtitle,
   popUpButtonSave,
-  openedPopup,
-  closedPopup,
   buttonDisabled,
   formInputError,
   inputErrorVisible,
@@ -23,6 +21,7 @@ export default class PopupWithForm extends Popup {
     this._formSelector = formSelector;
     this._handleFormSubmit = handleFormSubmit;
   }
+
   onSubmitCallback = null;
 
   _getInputValues() {

@@ -6,7 +6,6 @@ import {
   popUpContainer,
   popUpImage,
   popUpButtonSave,
-  popUpMainSubtitle,
   elementValidateMainSubtitle,
   elementValidateSubtitle,
   openedPopup,
@@ -14,7 +13,6 @@ import {
   popupVisible,
   popupNoDisplay,
   popupImageNoDisplay,
-  inputErrorVisible,
   buttonDisabled,
 } from "../utils/constans.js";
 

@@ -48,6 +48,7 @@ export const inputErrorVisible = "popup__error_visible";
 export const inputNoDisplay = "popup__input_type_no-display";
 export const likeInactive = "element__like_theme_inactive";
 export const likeActive = "element__like_theme_active";
+export const totalLikes = "element__total-likes";
 
 //declaro objeto y variables con parámetros de nombre de css para validación de formularios
 export const config = {
@@ -59,37 +60,12 @@ export const config = {
   errorClass: "popup__error_visible",
 };
 
-//objeto que contiene los items a mostrar
-export const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
-
 //variables para la validacion de formulario
 export const elementValidateMainSubtitle = new FormValidator(
   config,
   popUpMainSubtitle
 );
 export const elementValidateSubtitle = new FormValidator(config, popUpSubtitle);
+
+export const baseUrl = "https://around.nomoreparties.co/v1/web_es_07";
+export const authorization = "250c5b2d-3e06-42c3-8a5a-70bc34e003f8";

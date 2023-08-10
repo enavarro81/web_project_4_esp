@@ -1,11 +1,7 @@
 .element__like {
-  width: 21px;
   height: 19px;
   background-position: center;
   background-size: cover;
-  position: absolute;
-  bottom: 30px;
-  right: 18px;
 }
 
 .element__like:hover {

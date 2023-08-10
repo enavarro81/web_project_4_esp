@@ -28,10 +28,13 @@
 @import url(../blocks/element/__image/_theme/element__image_theme_valle-yosemite.css);
 @import url(../blocks/element/__descripcion/element__descripcion.css);
 @import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__likes/element__likes.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__total-likes/element__total-likes.css);
 @import url(../blocks/element/__like/_theme/element__like_theme_inactive.css);
 @import url(../blocks/element/__like/_theme/element__like_theme_active.css);
 @import url(../blocks/element/__trash/element__trash.css);
+@import url(../blocks/element/__trash/_theme/element__trash_theme_invisible.css);
 @import url(../blocks/element/__image/_theme/element__image_theme_niagara-falls.css);
 @import url(../blocks/element/__image/_theme/element__image_theme_montanas-calvas.css);
 @import url(../blocks/element/__image/_theme/element__image_theme_monte-rushmore.css);
