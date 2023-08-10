@@ -19,6 +19,9 @@ Este proyecto es la culminación del sprint #5 pertenciente al bootcamp de _Desa
 - Git
 - Figma
 - Javascript
+- POO
+- Webpack
+- APIs
 
 **Enlace a GitHub**
 
