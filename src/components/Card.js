@@ -2,8 +2,6 @@
 // esta clase permite crear plantillas predefinidas de elementos para los lugares
 //-----------------------------------------------------------------------------------------
 
-import Api from "../components/Api.js";
-
 import {
   likeInactive,
   likeActive,
@@ -19,7 +17,7 @@ import {
   authorization,
 } from "../utils/constans.js";
 
-import { defaultPop } from "../pages/index.js";
+import { defaultPop, apiClass } from "../pages/index.js";
 
 export class Card {
   constructor({ data, handleCardClick, cardSelector }) {
@@ -44,8 +42,6 @@ export class Card {
   _likeElement(event) {
     event.target.classList.toggle(likeInactive);
     event.target.classList.toggle(likeActive);
-
-    const apiClass = new Api({ baseUrl, authorization });
 
     if (event.target.classList.contains(likeActive) == true) {
       const addLikeCard = apiClass.addLikeCard(
@@ -84,7 +80,6 @@ export class Card {
 
   _removeElement() {
     defaultPop.openPopUp(() => {
-      const apiClass = new Api({ baseUrl, authorization });
       const deleteCard = apiClass.deleteCard(
         this._element.querySelector(".element__image").getAttribute("data-id")
       );

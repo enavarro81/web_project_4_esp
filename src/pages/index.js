@@ -26,7 +26,7 @@ import {
 
 import "../pages/index.css"; // agrega la importación del archivo principal de hojas de estilo
 
-const apiClass = new Api({ baseUrl, authorization });
+export const apiClass = new Api({ baseUrl, authorization });
 
 //inicializo el nombre a mostrar en la pagina
 const UserName = new UserInfo();
